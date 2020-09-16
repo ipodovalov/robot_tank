@@ -16,6 +16,8 @@ low_key = 38
 high_key = 35
 middle_key = 50
 exit_key = 18
+left_key = 105
+right_key = 104
 
 # left front motor
 in1 = 24
