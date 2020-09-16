@@ -17,7 +17,7 @@ high_key = 35
 middle_key = 50
 exit_key = 18
 left_key = 105
-right_key = 104
+right_key = 106
 
 # left front motor
 in1 = 24
@@ -148,6 +148,14 @@ for event in gamepad.read_loop():
             p2.ChangeDutyCycle(25)
             p3.ChangeDutyCycle(25)
             p4.ChangeDutyCycle(25)
+            x='z'
+
+        elif event.code == right_key:
+            print("Right key has been pushed by Pasha Podovalov")
+            x='z'
+
+        elif event.code == left_key:
+            print("Left key has been pushed by Pasha Podovalov")
             x='z'
 
         elif event.code == middle_key:
