@@ -140,7 +140,7 @@ def main():
       index += 1
 
     # Display CPU temperature
-#    lcd_string("Pasha Podovalov",LCD_LINE_1)
+    lcd_string("Паша Подовалов",LCD_LINE_1)
 #    lcd_string("CPU temperature:",LCD_LINE_1)
 #    textCPU = getCPUtemperature()+"C"
 #    lcd_string(textCPU,LCD_LINE_2)
