@@ -20,6 +20,7 @@ middle_key = 50
 exit_key = 18
 left_key = 105
 right_key = 106
+light_key = 36
 
 # left front motor
 in1 = 24
@@ -41,9 +42,14 @@ in7 = 13
 in8 = 19
 en4 = 26
 
+# light led
+led = 18
+
 temp1=1
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(led,GPIO.OUT)
 GPIO.setup(in1,GPIO.OUT)
 GPIO.setup(in2,GPIO.OUT)
 GPIO.setup(in3,GPIO.OUT)
@@ -81,7 +87,15 @@ print("\n")
 for event in gamepad.read_loop():
 
     if event.type == ecodes.EV_KEY and event.value == 1:
-        if event.code == run_key:
+        if event.code == light_key:
+            print("light")
+            if GPIO.input(led) == GPIO.LOW:
+                print ("turn on light")
+                GPIO.output(led,GPIO.HIGH)
+            else:
+                print ("turn off light")
+                GPIO.output(led,GPIO.LOW)
+        elif event.code == run_key:
             print("run")
             if(temp1==1):
                 GPIO.output(in1,GPIO.HIGH)
@@ -152,12 +166,36 @@ for event in gamepad.read_loop():
             p4.ChangeDutyCycle(25)
             x='z'
 
-        elif event.code == right_key:
-            print("Right key has been pushed by Pasha Podovalov")
+        elif event.code == left_key:
+            GPIO.output(in1,GPIO.LOW)
+            GPIO.output(in2,GPIO.HIGH)
+            GPIO.output(in3,GPIO.HIGH)
+            GPIO.output(in4,GPIO.LOW)
+            GPIO.output(in5,GPIO.LOW)
+            GPIO.output(in6,GPIO.HIGH)
+            GPIO.output(in7,GPIO.HIGH)
+            GPIO.output(in8,GPIO.LOW)
+#            p1.ChangeDutyCycle(15)
+#            p2.ChangeDutyCycle(100)
+#            p3.ChangeDutyCycle(15)
+#            p4.ChangeDutyCycle(100)
+            print("Left key has been pushed by Sonia Smirnova")
             x='z'
 
-        elif event.code == left_key:
-            print("Left key has been pushed by Pasha Podovalov")
+        elif event.code == right_key:
+            GPIO.output(in1,GPIO.HIGH)
+            GPIO.output(in2,GPIO.LOW)
+            GPIO.output(in3,GPIO.LOW)
+            GPIO.output(in4,GPIO.HIGH)
+            GPIO.output(in5,GPIO.HIGH)
+            GPIO.output(in6,GPIO.LOW)
+            GPIO.output(in7,GPIO.LOW)
+            GPIO.output(in8,GPIO.HIGH)
+#            p1.ChangeDutyCycle(100)
+#            p2.ChangeDutyCycle(15)
+#            p3.ChangeDutyCycle(100)
+#            p4.ChangeDutyCycle(15)
+            print("Right key has been pushed by Pasha Podovalov")
             x='z'
 
         elif event.code == middle_key:
